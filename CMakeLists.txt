@@ -3,4 +3,4 @@ project(CUDA_Raytracing)
 
 set(CMAKE_CXX_STANDARD 23)
 
-add_executable(CUDA_Raytracing main.cpp)
+add_executable(CUDA_Raytracing src/main.cpp)
