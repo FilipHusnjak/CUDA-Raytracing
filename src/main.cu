@@ -170,6 +170,7 @@ __device__ __host__ int clamp(float value) {
 __global__ void gpu_trace(byte *img, const sphere *spheres) {
     const unsigned int j = threadIdx.x + BLOCK_SIZE * blockIdx.x;
     const unsigned int i = threadIdx.y + BLOCK_SIZE * blockIdx.y;
+    if (i >= HEIGHT || j >= WIDTH) return;
     vec3 color = trace((int) i, (int) j, spheres);
     img[(i * WIDTH + j) * BYTES_PER_PIXEL] = (byte) clamp(color.z * 255.f);
     img[(i * WIDTH + j) * BYTES_PER_PIXEL + 1] = (byte) clamp(color.y * 255.f);
